@@ -1,8 +1,9 @@
-from tweepy.streaming import StreamListener
+import os
+from dotenv import load_dotenv, find_dotenv
+
 from tweepy import OAuthHandler
 from tweepy import Stream
-
-import credentials
+from tweepy.streaming import StreamListener
 
 class TweetListener(StreamListener):
     '''
@@ -17,13 +18,14 @@ class TweetListener(StreamListener):
 
 
 if __name__ == '__main__':
+    load_dotenv(find_dotenv())
     listener = TweetListener()
 
-    auth = OAuthHandler(credentials.CONSUMER_KEY,
-                        credentials.CONSUMER_SECRET)
+    auth = OAuthHandler(os.environ.get("CONSUMER_KEY"),
+                        os.environ.get("CONSUMER_SECRET"))
 
-    auth.set_access_token(credentials.ACCESS_TOKEN,
-                          credentials.ACCESS_TOKEN_SECRET)
+    auth.set_access_token(os.environ.get("ACCESS_TOKEN"),
+                          os.environ.get("ACCESS_TOKEN_SECRET"))
 
     stream = Stream(auth, listener)
 

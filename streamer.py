@@ -1,6 +1,6 @@
 import os
-from dotenv import load_dotenv, find_dotenv
 
+from dotenv import load_dotenv, find_dotenv
 from tweepy import OAuthHandler
 from tweepy import Stream
 from tweepy.streaming import StreamListener

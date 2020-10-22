@@ -26,9 +26,9 @@
 
 + Install required packages in the virtual environment:
 
-  `pip install tweepy`
+  `pip install --requirement requirements.txt`
 
-+ Fill in the required details from application settings in `credentials.py`. This is required to use twitter API.
++ From the application settings on `developer.twitter.com`, put the details in a `.env`. The environment variables in this file are only valid for one shell session
 
   (**NOTE**: `CONSUMER_KEY` is the `API_KEY`, **and** `CONSUMER_SECRET` is the `API_SECRET_KEY`)
 
@@ -38,7 +38,7 @@
 
 + In the `$PROJECT_ROOT` directory, execute:
 
-  `python tweet_streamer.py`
+  `python streamer.py`
 
 ----
 

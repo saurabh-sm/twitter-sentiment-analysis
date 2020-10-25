@@ -19,7 +19,8 @@ install:
   - pip install --requirement requirements.txt
 
 script:
-  - ./tests/unit_tests.sh
+  - cd ..
+  - echo $PWD
 
 notifications:
   email:

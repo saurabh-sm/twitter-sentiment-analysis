@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/saurabmish/Twitter-Sentiment-Analysis.svg?branch=master)](https://travis-ci.org/saurabmish/Twitter-Sentiment-Analysis)
+
 # Twitter Sentiment Analysis
 
 ## Setup

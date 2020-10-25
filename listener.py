@@ -19,3 +19,4 @@ class Listener(StreamListener):
 
     def on_error(self, status):
         print(status)
+        return False

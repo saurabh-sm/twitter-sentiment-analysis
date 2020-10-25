@@ -4,11 +4,27 @@
 
 ## Setup
 
-+ Navigate to `$PROJECT_ROOT` directory
++ Navigate to desired directory to execute the program and test cases. This directory will be called as `$PROJECT_ROOT`
+
++ Initiate git:
+
+  `git init`
+
++ Associate current directory with remote repository:
+
+  `git remote add origin https://github.com/saurabmish/Twitter-Sentiment-Analysis.git`
+
++ Fetch project from remote repository:
+
+  `git pull origin master`
 
 + Initiate Python 3 virtual environment:
 
   `python3 -m venv twitter`
+
++ Update pip:
+
+  `pip install --upgrade pip`
 
 + Activate newly created virtual environment:
 

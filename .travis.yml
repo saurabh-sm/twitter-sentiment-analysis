@@ -1,0 +1,29 @@
+arch: amd64
+
+os: linux
+
+dist: xenial
+
+language: python
+
+cache: pip
+
+python:
+  - "3.8"
+
+before_install:
+  - python --version
+  - pip install --upgrade pip
+
+install:
+  - pip install --requirement requirements.txt
+
+script:
+  - ./tests/unit_tests.sh
+
+notifications:
+  email:
+    recipients:
+      - "saurab.mish@gmail.com"
+    on_success: never
+    on_failure: always

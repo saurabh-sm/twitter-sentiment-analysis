@@ -32,24 +32,24 @@ def test_access_token_secret_exists():
 
 def test_api_key_string():
     '''
-    Verify data type of API key is a string
+    Verify data type of API key is a string.
     '''
     assert type(keys.API_KEY) is str
 
 def test_api_key_secret_string():
     '''
-    Verify data type of API key password is a string
+    Verify data type of API key password is a string.
     '''
     assert type(keys.API_SECRET_KEY) is str
 
 def test_access_token_string():
     '''
-    Verify data type of access token is a string
+    Verify data type of access token is a string.
     '''
     assert type(keys.ACCESS_TOKEN) is str
 
 def test_access_token_secret_string():
     '''
-    Verify data type of access token password is a string
+    Verify data type of access token password is a string.
     '''
     assert type(keys.ACCESS_TOKEN_SECRET) is str

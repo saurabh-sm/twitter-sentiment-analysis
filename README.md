@@ -22,13 +22,13 @@
 
   `python3 -m venv twitter`
 
-+ Update pip:
-
-  `pip install --upgrade pip`
-
 + Activate newly created virtual environment:
 
   `source twitter/bin/activate`
+
++ Update pip:
+
+  `pip install --upgrade pip`
 
 + Install required packages in the virtual environment:
 
@@ -44,7 +44,7 @@
 
 + To run the *program*, execute the below command in `$PROJECT_ROOT`:
 
-  `python streamer.py`
+  `python app/streamer.py`
 
 ----
 

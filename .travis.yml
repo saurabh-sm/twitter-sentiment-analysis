@@ -19,6 +19,7 @@ install:
   - pip install --requirement requirements.txt
 
 script:
+  - ./test/environment_variables.sh
   - pytest -v
 
 notifications:

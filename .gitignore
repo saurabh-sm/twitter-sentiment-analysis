@@ -3,3 +3,4 @@ __pycache__/
 twitter/
 .env
 TODO.txt
+live_tweets.json

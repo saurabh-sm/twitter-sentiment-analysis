@@ -1,18 +1,6 @@
 # Twitter Sentiment Analysis
 
-## Online Setup
-
-+ Register for a developer account on Twitter on:
-
-  `https://developer.twitter.com/en`
-
-  (**NOTE**: This will need to be approved by Twitter)
-
-+ Create a new application
-
-----
-
-## Local Setup
+## Setup
 
 + Navigate to `$PROJECT_ROOT` directory
 
@@ -28,15 +16,15 @@
 
   `pip install --requirement requirements.txt`
 
-+ From the application settings on `developer.twitter.com`, put the details in a `.env`. The environment variables in this file are only valid for one shell session
-
-  (**NOTE**: `CONSUMER_KEY` is the `API_KEY`, **and** `CONSUMER_SECRET` is the `API_SECRET_KEY`)
-
 ----
 
-## Program Execution
+## Execution
 
-+ In the `$PROJECT_ROOT` directory, execute:
++ To run *test cases*, execute the below command in `$PROJECT_ROOT`:
+
+  `pytest -v`
+
++ To run the *program*, execute the below command in `$PROJECT_ROOT`:
 
   `python streamer.py`
 

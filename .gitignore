@@ -1,6 +1,6 @@
 __pycache__/
 .pytest_cache
-twitter/
+twitter-sentiment/
 .env
 TODO.txt
 live_tweets.json

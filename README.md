@@ -45,12 +45,6 @@
 
   `pytest -v`
 
-+ To run the *program*, execute the below command in `$PROJECT_ROOT`:
-
-  `python app/streamer.py`
++ Individual packages like `client.py`, `streamer.py`, etc. can be run directly
 
 ----
-
-## Output
-
-Executing the above command will produce an output consisting of a number of attributes in the form of key-value pairs. Each tweet will be a dictionary having attributes like `created_at`, `id`, `text`, `source`, etc.

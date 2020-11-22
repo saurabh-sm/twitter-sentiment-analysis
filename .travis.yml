@@ -41,7 +41,7 @@ install:
   - pip install codecov
 
 script:
-  - ./test/environment_variables.sh
+  - ./tests/environment_variables.sh
   - coverage run -m pytest -v
   - coverage report -m
   - coverage xml

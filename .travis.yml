@@ -1,26 +1,52 @@
 arch: amd64
 
-os: linux
-
-dist: xenial
-
 language: python
 
-cache: pip
-
-python:
-  - "3.8"
+jobs:
+  include:
+    - name: "Python 3.8 on Xenial Linux"
+      os: linux
+      dist: xenial
+      python: 3.8
+      before_install:
+        - virtualenv -p python twitter-sentiment
+        - source twitter-sentiment/bin/activate
+    - name: "Python 3.8 on macOS 10.15"
+      os: osx
+      osx_image: xcode11.6
+      language: shell
+      before_install:
+        - python3 -m pip install virtualenv
+        - python3 -m virtualenv twitter-sentiment
+        - source twitter-sentiment/bin/activate
+    - name: "Python 3.8 on Windows 10"
+      os: windows
+      language: shell
+      env: PATH=/c/Python38:/c/Python38/Scripts:$PATH
+      before_install:
+        - choco install python --version 3.8.0
+        - python -m pip install virtualenv
+        - python -m virtualenv twitter-sentiment
+        - source twitter-sentiment/Scripts/activate
 
 before_install:
-  - python --version
-  - pip install --upgrade pip
+  - pip3 install --upgrade pip
 
 install:
-  - pip install --requirement requirements.txt
+  - pip install python-dotenv
+  - pip install tweepy
+  - pip install pytest
+  - pip install pytest-cov
+  - pip install codecov
 
 script:
   - ./test/environment_variables.sh
-  - pytest -v
+  - coverage run -m pytest -v
+  - coverage report -m
+  - coverage xml
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash) -f tests/coverage/coverage.xml
 
 notifications:
   email:

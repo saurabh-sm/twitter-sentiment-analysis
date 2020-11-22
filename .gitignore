@@ -4,3 +4,5 @@ twitter-sentiment/
 .env
 TODO.txt
 live_tweets.json
+tests/coverage/.coverage
+tests/coverage/coverage.xml

@@ -45,6 +45,6 @@
 
   `pytest -v`
 
-+ Individual packages like `client.py`, `streamer.py`, etc. can be run directly
++ Individual packages like `analyzer.py`, `client.py`, `streamer.py`, etc. can be run directly
 
 ----

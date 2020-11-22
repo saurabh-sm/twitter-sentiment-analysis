@@ -1,9 +1,7 @@
 from tweepy.streaming import StreamListener
 
-class Listener(StreamListener):
-    '''
-    Stream filtered tweets to the standard output and JSON file.
-    '''
+class TwitterListener(StreamListener):
+
     def __init__(self, tweets_file):
         self.tweets_file = tweets_file
 
@@ -18,5 +16,6 @@ class Listener(StreamListener):
         return False
 
     def on_error(self, status):
+        if status == 420:   # repeated access with incorrect stuff / rate limit will lock the developer account
+            return False
         print(status)
-        return False

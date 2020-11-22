@@ -6,8 +6,12 @@ jobs:
   include:
     - name: "Python 3.8 on Xenial Linux"
       os: linux
-      dist: xenial
       python: 3.8
+      dist: xenial
+      addons:
+        apt:
+          packages:
+            - python3-tk
       before_install:
         - virtualenv -p python twitter-sentiment
         - source twitter-sentiment/bin/activate
@@ -39,6 +43,9 @@ install:
   - pip install pytest
   - pip install pytest-cov
   - pip install codecov
+  - pip install numpy
+  - pip install pandas
+  - pip install matplotlib
 
 script:
   - ./tests/environment_variables.sh

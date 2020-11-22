@@ -1,23 +1,23 @@
-from tweepy import OAuthHandler
 from tweepy import Stream
 
 import keys
-from listener import Listener
+from listener import TwitterListener
+from authenticator import TwitterAuthenticator
 
 class Streamer():
-    '''
-    Stream tweets based on hash tags.
-    '''
-    def stream_tweets(self, tweets_file, hash_tags):
-        listener = Listener(tweets_file)
 
-        auth = OAuthHandler(keys.API_KEY, keys.API_SECRET_KEY)
-        auth.set_access_token(keys.ACCESS_TOKEN, keys.ACCESS_TOKEN_SECRET)
+    def __init__(self):
+        self.twitter_authenticator = TwitterAuthenticator()
 
+    def stream_tweets(self, fetched_tweets_filename, hash_tag_list):
+        listener = TwitterListener(fetched_tweets_filename)
+        auth = self.twitter_authenticator.authenticate_twitter_app()
         stream = Stream(auth, listener)
-        stream.filter(track=hash_tags)
+        stream.filter(track=hash_tag_list)
+
 
 def main():
+
     hash_tags = ['Donald Trump', 'Joe Biden']
     tweets_file = 'live_tweets.json'
 

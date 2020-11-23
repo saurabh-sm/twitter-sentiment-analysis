@@ -1,55 +1,146 @@
+import re
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
+from textblob import TextBlob
 from client import TwitterClient
 
 class Analyzer:
 
-    def tweet_frame(self, tweets):
-        tweet_frame = pd.DataFrame(data=[tweet.text for tweet in tweets], columns = ['Tweets'])
-        tweet_frame['id'] = np.array([tweet.id for tweet in tweets])
-        tweet_frame['date'] = np.array([tweet.created_at for tweet in tweets])
-        tweet_frame['likes'] = np.array([tweet.favorite_count for tweet in tweets])
-        tweet_frame['retweets'] = np.array([tweet.retweet_count for tweet in tweets])
-        return tweet_frame
+    def __init__(self):
+        self.tweets = []
+        self.tweetText = []
+        self.polarity = 0
+        self.positive = 0
+        self.wpositive = 0
+        self.spositive = 0
+        self.negative = 0
+        self.wnegative = 0
+        self.snegative = 0
+        self.neutral = 0
+
+
+    def get_tweets_and_analyze(self, filtered_tweets, searchTerm, NoOfTerms):
+        self.tweets = filtered_tweets
+        for tweet in self.tweets:
+            self.tweetText.append(self.cleanTweet(tweet.text).encode('utf-8'))
+            analysis = TextBlob(tweet.text)
+            self.polarity += analysis.sentiment.polarity
+
+            if (analysis.sentiment.polarity == 0):
+                self.neutral += 1
+            elif (analysis.sentiment.polarity > 0 and analysis.sentiment.polarity <= 0.3):
+                self.wpositive += 1
+            elif (analysis.sentiment.polarity > 0.3 and analysis.sentiment.polarity <= 0.6):
+                self.positive += 1
+            elif (analysis.sentiment.polarity > 0.6 and analysis.sentiment.polarity <= 1):
+                self.spositive += 1
+            elif (analysis.sentiment.polarity > -0.3 and analysis.sentiment.polarity <= 0):
+                self.wnegative += 1
+            elif (analysis.sentiment.polarity > -0.6 and analysis.sentiment.polarity <= -0.3):
+                self.negative += 1
+            elif (analysis.sentiment.polarity > -1 and analysis.sentiment.polarity <= -0.6):
+                self.snegative += 1
+
+
+    def cleanTweet(self, tweet):
+        return ' '.join(re.sub("(@[A-Za-z0-9]+)|([^0-9A-Za-z \t]) | (\w +:\ / \ / \S +)", " ", tweet).split())
+
+
+    def compute_average(self, searchTerm, NoOfTerms):
+        self.positive = self.percentage(self.positive, NoOfTerms)
+        self.wpositive = self.percentage(self.wpositive, NoOfTerms)
+        self.spositive = self.percentage(self.spositive, NoOfTerms)
+        self.negative = self.percentage(self.negative, NoOfTerms)
+        self.wnegative = self.percentage(self.wnegative, NoOfTerms)
+        self.snegative = self.percentage(self.snegative, NoOfTerms)
+        self.neutral = self.percentage(self.neutral, NoOfTerms)
+        self.polarity = self.polarity / NoOfTerms
+
+
+    def percentage(self, part, whole):
+        temp = 100 * float(part) / float(whole)
+        return format(temp, '.2f')
+
+
+    def sentiment_report(self, searchTerm, NoOfTerms):
+        print("How people are reacting on " + searchTerm + " by analyzing " + str(NoOfTerms) + " tweets.")
+        print()
+        print("General Report: ")
+
+        if (self.polarity == 0):
+            print("self.Neutral")
+        elif (self.polarity > 0 and self.polarity <= 0.3):
+            print("Weakly self.positive")
+        elif (self.polarity > 0.3 and self.polarity <= 0.6):
+            print("self.positive")
+        elif (self.polarity > 0.6 and self.polarity <= 1):
+            print("Strongly self.positive")
+        elif (self.polarity > -0.3 and self.polarity <= 0):
+            print("Weakly self.Negative")
+        elif (self.polarity > -0.6 and self.polarity <= -0.3):
+            print("self.Negative")
+        elif (self.polarity > -1 and self.polarity <= -0.6):
+            print("Strongly self.Negative")
+
+        print()
+        print("Detailed Report: ")
+        print(str(self.positive) + "% people thought it was self.positive")
+        print(str(self.wpositive) + "% people thought it was weakly self.positive")
+        print(str(self.spositive) + "% people thought it was strongly self.positive")
+        print(str(self.negative) + "% people thought it was self.negative")
+        print(str(self.wnegative) + "% people thought it was weakly self.negative")
+        print(str(self.snegative) + "% people thought it was strongly self.negative")
+        print(str(self.neutral) + "% people thought it was self.neutral")
+
+        self.plotPieChart(self.positive, self.wpositive, self.spositive,
+            self.negative, self.wnegative, self.snegative, self.neutral,
+            searchTerm, NoOfTerms)
+
+
+    def plotPieChart(self, positive, wpositive, spositive, negative,
+                wnegative, snegative, neutral, searchTerm, noOfSearchTerms):
+
+        labels = ['positive [' + str(positive) + '%]', 'Weakly positive ['
+                  + str(wpositive) + '%]','Strongly positive [' + str(spositive)
+                  + '%]', 'Neutral [' + str(neutral) + '%]', 'Negative ['
+                  + str(negative) + '%]', 'Weakly Negative [' + str(wnegative)
+                  + '%]', 'Strongly Negative [' + str(snegative) + '%]']
+
+        sizes = [positive, wpositive, spositive, neutral, negative, wnegative, snegative]
+
+        colors = ['yellowgreen','lightgreen','darkgreen', 'gold', 'red','lightsalmon','darkred']
+
+        patches, texts = plt.pie(sizes, colors=colors, startangle=90)
+
+        plt.legend(patches, labels, loc="best")
+
+        plt.title('How people are reacting on ' + searchTerm + ' by analyzing '
+            + str(noOfSearchTerms) + ' Tweets.')
+
+        plt.axis('equal')
+
+        plt.tight_layout()
+
+        plt.show()
+
 
 
 def main():
 
     tweet_analyzer = Analyzer()
+
     twitter_client = TwitterClient()
+    twitter_api = twitter_client.get_twitter_client_api()
 
-    api = twitter_client.get_twitter_client_api()
-    tweets = api.user_timeline(screen_name='realdonaldtrump', count = 20)
-    #print(tweets)
+    search_term = 'trump'
+    number_of_searches = 20
 
-    df = tweet_analyzer.tweet_frame(tweets)
-    print(df.head(10))
-    #print(dir(tweets[0]))       # infor that can be extracted from first tweet
-
-    # Basic Stats
-    print(np.max(df['likes']))      # most liked tweet
-    print(np.max(df['retweets']))   # most retweeted tweet
-
-    '''
-    # Advanced Stats: Likes
-    time_likes = pd.Series(data=df['likes'].values, index=df['date'])
-    time_likes.plot(figsize=(15, 5), color='red')
-    plt.show()
-
-    # Advanced Stats: Retweets
-    time_retweets = pd.Series(data=df['retweets'].values, index=df['date'])
-    time_retweets.plot(figsize=(15, 5), color='blue')
-    plt.show()
-    '''
-
-    # Advanced Stats: Combination of likes and retweets
-    time_likes = pd.Series(data=df['likes'].values, index=df['date'])
-    time_likes.plot(figsize=(16, 4), label='Likes', color='red', legend=True)
-    time_retweets = pd.Series(data=df['retweets'].values, index=df['date'])
-    time_retweets.plot(figsize=(16, 4), label='Retweets', color='blue', legend=True)
-    plt.show()
+    filtered_tweets = twitter_client.get_tweets(search_term, number_of_searches)
+    tweet_analyzer.get_tweets_and_analyze(filtered_tweets, search_term, number_of_searches)
+    tweet_analyzer.compute_average(search_term, number_of_searches)
+    tweet_analyzer.sentiment_report(search_term, number_of_searches)
 
 
 if __name__ == '__main__':

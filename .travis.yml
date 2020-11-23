@@ -43,8 +43,6 @@ install:
   - pip install pytest
   - pip install pytest-cov
   - pip install codecov
-  - pip install numpy
-  - pip install pandas
   - pip install matplotlib
   - pip install textblob
 

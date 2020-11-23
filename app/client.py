@@ -31,6 +31,12 @@ class TwitterClient():
     def get_twitter_client_api(self):
         return self.twitter_client
 
+    def get_tweets(self, searchTerm, NoOfTerms):
+        tweets = []
+        #for tweet in Cursor(self.twitter_client.user_timeline, id=self.twitter_user).items(num_tweets):
+        for tweet in Cursor(self.twitter_client.search, q=searchTerm, lang = "en").items(NoOfTerms):
+            tweets.append(tweet)
+        return tweets
 
 def main():
 

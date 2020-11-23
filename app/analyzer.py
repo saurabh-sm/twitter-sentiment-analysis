@@ -1,6 +1,4 @@
 import re
-import numpy as np
-import pandas as pd
 import matplotlib.pyplot as plt
 
 from textblob import TextBlob
@@ -70,29 +68,29 @@ class Analyzer:
         print("General Report: ")
 
         if (self.polarity == 0):
-            print("self.Neutral")
+            print("Neutral")
         elif (self.polarity > 0 and self.polarity <= 0.3):
-            print("Weakly self.positive")
+            print("Weakly positive")
         elif (self.polarity > 0.3 and self.polarity <= 0.6):
-            print("self.positive")
+            print("Positive")
         elif (self.polarity > 0.6 and self.polarity <= 1):
-            print("Strongly self.positive")
+            print("Strongly positive")
         elif (self.polarity > -0.3 and self.polarity <= 0):
-            print("Weakly self.Negative")
+            print("Weakly Negative")
         elif (self.polarity > -0.6 and self.polarity <= -0.3):
-            print("self.Negative")
+            print("Negative")
         elif (self.polarity > -1 and self.polarity <= -0.6):
-            print("Strongly self.Negative")
+            print("Strongly Negative")
 
         print()
         print("Detailed Report: ")
-        print(str(self.positive) + "% people thought it was self.positive")
-        print(str(self.wpositive) + "% people thought it was weakly self.positive")
-        print(str(self.spositive) + "% people thought it was strongly self.positive")
-        print(str(self.negative) + "% people thought it was self.negative")
-        print(str(self.wnegative) + "% people thought it was weakly self.negative")
-        print(str(self.snegative) + "% people thought it was strongly self.negative")
-        print(str(self.neutral) + "% people thought it was self.neutral")
+        print(str(self.positive) + "% people thought it was positive")
+        print(str(self.wpositive) + "% people thought it was weakly positive")
+        print(str(self.spositive) + "% people thought it was strongly positive")
+        print(str(self.negative) + "% people thought it was negative")
+        print(str(self.wnegative) + "% people thought it was weakly negative")
+        print(str(self.snegative) + "% people thought it was strongly negative")
+        print(str(self.neutral) + "% people thought it was neutral")
 
         self.plotPieChart(self.positive, self.wpositive, self.spositive,
             self.negative, self.wnegative, self.snegative, self.neutral,

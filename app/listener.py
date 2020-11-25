@@ -1,18 +1,46 @@
+import json
+
 from tweepy.streaming import StreamListener
+from textblob import TextBlob
+from elasticsearch import Elasticsearch
 
 class TwitterListener(StreamListener):
 
-    def __init__(self, tweets_file):
-        self.tweets_file = tweets_file
+    def __init__(self):
+        self.es = Elasticsearch()
+        self.es.indices.create(index='twitter', ignore=400)
 
     def on_data(self, data):
         try:
-            print(data)
-            with open(self.tweets_file, 'a') as tweets_file:
-                tweets_file.write(data)
+            dict_data = json.loads(data)
+            tweet = TextBlob(dict_data["text"])
+            print(tweet.sentiment.polarity)
+
+            if tweet.sentiment.polarity < 0:
+                sentiment = "negative"
+            elif tweet.sentiment.polarity == 0:
+                sentiment = "neutral"
+            else:
+                sentiment = "positive"
+
+            print(sentiment)
+
+            self.es.index(
+                index = "twitter-sentiment",
+                doc_type = "test-type",
+                body = {
+                    "author": dict_data["user"]["screen_name"],
+                    "date": dict_data["created_at"],
+                    "message": dict_data["text"],
+                    "polarity": tweet.sentiment.polarity,
+                    "subjectivity": tweet.sentiment.subjectivity,
+                    "sentiment": sentiment
+                })
+
             return True
-        except BaseException as ex:
-            print("Data Error: %s", str(ex))
+
+        except Exception as e:
+            print("Data Error: %s", str(e))
         return False
 
     def on_error(self, status):

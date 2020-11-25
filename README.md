@@ -48,3 +48,51 @@
 + Individual packages like `analyzer.py`, `client.py`, `streamer.py`, etc. can be run directly
 
 ----
+
+## Live Sentiment Analysis
+
++ Download and install [Elasticsearch] and [Kibana]
+
++ Start services for elasticsearch and kibana:
+
+  `sudo -i service elasticsearch start`
+
+  `sudo -i service kibana start`
+
++ Check Elasticsearch status:
+
+  `curl -X GET "localhost:9200/?pretty"`
+
+  Expected Output:
+
+  ```
+  {
+    "name" : "thinkpad-t480",
+    "cluster_name" : "elasticsearch",
+    "cluster_uuid" : "BZSMYSWPRp26y_pniprZVw",
+    "version" : {
+      "number" : "7.10.0",
+      "build_flavor" : "default",
+      "build_type" : "deb",
+      "build_hash" : "51e9d6f22758d0374a0f3f5c6e8f3a7997850f96",
+      "build_date" : "2020-11-09T21:30:33.964949Z",
+      "build_snapshot" : false,
+      "lucene_version" : "8.7.0",
+      "minimum_wire_compatibility_version" : "6.8.0",
+      "minimum_index_compatibility_version" : "6.0.0-beta1"
+    },
+    "tagline" : "You Know, for Search"
+  }
+  ```
+
++ Check Kibana status in the browser with the below URL:
+
+  `http://localhost:5601/app/dev_tools#/console?load_from=https:/www.elastic.co/guide/en/elasticsearch/reference/7.10/snippets/19.console`
+
++ Execute `streamer.py` from the `$PROJECT_ROOT`:
+
+  `python3 app/streamer.py`
+
+
+[Elasticsearch]: https://www.elastic.co/downloads/elasticsearch
+[Kibana]: https://www.elastic.co/downloads/kibana

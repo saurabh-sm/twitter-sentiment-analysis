@@ -16,12 +16,20 @@ class TwitterListener(StreamListener):
             tweet = TextBlob(dict_data["text"])
             print(tweet.sentiment.polarity)
 
-            if tweet.sentiment.polarity < 0:
-                sentiment = "negative"
-            elif tweet.sentiment.polarity == 0:
-                sentiment = "neutral"
-            else:
-                sentiment = "positive"
+            if (tweet.sentiment.polarity == 0):
+                sentiment = "Neutral"
+            elif (tweet.sentiment.polarity > 0 and tweet.sentiment.polarity <= 0.3):
+                sentiment = "Weak Positive"
+            elif (tweet.sentiment.polarity > 0.3 and tweet.sentiment.polarity <= 0.6):
+                sentiment = "Positive"
+            elif (tweet.sentiment.polarity > 0.6 and tweet.sentiment.polarity <= 1):
+                sentiment = "Strong Positive"
+            elif (tweet.sentiment.polarity > -0.3 and tweet.sentiment.polarity <= 0):
+                sentiment = "Weak Negative"
+            elif (tweet.sentiment.polarity > -0.6 and tweet.sentiment.polarity <= -0.3):
+                sentiment = "Negative"
+            elif (tweet.sentiment.polarity > -1 and tweet.sentiment.polarity <= -0.6):
+                sentiment = "Strong Negative"
 
             print(sentiment)
 

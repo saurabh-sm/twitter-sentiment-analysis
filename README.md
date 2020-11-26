@@ -1,5 +1,4 @@
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/f7e3281daeed4c90bcc395a3e73d0164)](https://app.codacy.com/gh/saurabmish/Twitter-Sentiment-Analysis?utm_source=github.com&utm_medium=referral&utm_content=saurabmish/Twitter-Sentiment-Analysis&utm_campaign=Badge_Grade)
-[![Maintainability](https://api.codeclimate.com/v1/badges/ebcadff8123f94444cd9/maintainability)](https://codeclimate.com/github/saurabmish/Twitter-Sentiment-Analysis/maintainability)
 [![codecov](https://codecov.io/gh/saurabmish/Twitter-Sentiment-Analysis/branch/master/graph/badge.svg?token=T6CFHNNEPL)](https://codecov.io/gh/saurabmish/Twitter-Sentiment-Analysis)
 [![Build Status](https://travis-ci.org/saurabmish/Twitter-Sentiment-Analysis.svg?branch=master)](https://travis-ci.org/saurabmish/Twitter-Sentiment-Analysis)
 

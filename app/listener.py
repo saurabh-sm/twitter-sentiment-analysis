@@ -28,13 +28,13 @@ class TwitterListener(StreamListener):
                 sentiment = "Weak Negative"
             elif (tweet.sentiment.polarity > -0.6 and tweet.sentiment.polarity <= -0.3):
                 sentiment = "Negative"
-            elif (tweet.sentiment.polarity > -1 and tweet.sentiment.polarity <= -0.6):
+            else: # (tweet.sentiment.polarity > -1 and tweet.sentiment.polarity <= -0.6):
                 sentiment = "Strong Negative"
 
             print(sentiment)
 
             self.es.index(
-                index = "twitter-sentiment",
+                index = "twitter",
                 doc_type = "test-type",
                 body = {
                     "author": dict_data["user"]["screen_name"],
@@ -45,7 +45,7 @@ class TwitterListener(StreamListener):
                     "sentiment": sentiment
                 })
 
-            return True
+        return True
 
         except Exception as e:
             print("Data Error: %s", str(e))

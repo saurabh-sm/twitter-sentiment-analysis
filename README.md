@@ -47,6 +47,15 @@
 
 + Individual packages like `analyzer.py`, `client.py`, `streamer.py`, etc. can be run directly
 
++ Run flask microservices:
+
+  **Note**:
+
+    + The script `twitter_sentiment_analysis.py` is the entrypoint to the application
+    + `.flaskenv` contains configuration for flask
+
+  `flask run`
+
 ----
 
 ## Live Sentiment Analysis

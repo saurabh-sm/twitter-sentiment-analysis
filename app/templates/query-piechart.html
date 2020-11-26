@@ -1,0 +1,8 @@
+{% block content %}
+    <h1>Hello!</h1>
+    {% for index, data in report_data.items() %}
+    <div><p>
+        <b>Key</b>: {{ index }} <b>Value</b>: {{ data }}
+    </div></p>
+    {% endfor %}
+{% endblock %}

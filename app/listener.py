@@ -45,7 +45,7 @@ class TwitterListener(StreamListener):
                     "sentiment": sentiment
                 })
 
-        return True
+            return True
 
         except Exception as e:
             print("Data Error: %s", str(e))

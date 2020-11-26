@@ -17,19 +17,19 @@ class TwitterListener(StreamListener):
             print(tweet.sentiment.polarity)
 
             if (tweet.sentiment.polarity == 0):
-                sentiment = "Neutral"
+                sentiment = "neutral"
             elif (tweet.sentiment.polarity > 0 and tweet.sentiment.polarity <= 0.3):
-                sentiment = "Weak Positive"
+                sentiment = "weak positive"
             elif (tweet.sentiment.polarity > 0.3 and tweet.sentiment.polarity <= 0.6):
-                sentiment = "Positive"
+                sentiment = "positive"
             elif (tweet.sentiment.polarity > 0.6 and tweet.sentiment.polarity <= 1):
-                sentiment = "Strong Positive"
+                sentiment = "strong positive"
             elif (tweet.sentiment.polarity > -0.3 and tweet.sentiment.polarity <= 0):
-                sentiment = "Weak Negative"
+                sentiment = "weak negative"
             elif (tweet.sentiment.polarity > -0.6 and tweet.sentiment.polarity <= -0.3):
-                sentiment = "Negative"
+                sentiment = "negative"
             else: # (tweet.sentiment.polarity > -1 and tweet.sentiment.polarity <= -0.6):
-                sentiment = "Strong Negative"
+                sentiment = "strong negative"
 
             print(sentiment)
 

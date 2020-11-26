@@ -1,0 +1,23 @@
+{% include "static-analysis.html" %}
+
+
+{% block title %}
+    Summary Report Page Title
+{% endblock %}
+
+{% block content %}
+    <p></p>
+    <p></p>
+    <h4> Test Summary Report </h4>
+{% endblock %}
+
+
+{% block body %}
+    <form action="#" method="post">
+        <p> Hashtag: </p>
+        <p><input type="text" name="summary_report_hashtag" /></p>
+        <p> Number of Tweets: </p>
+        <p><input type="text" name="summary_report_tweets" /></p>
+        <p><input type="submit" value="Search" /></p>
+    </form>
+{% endblock %}

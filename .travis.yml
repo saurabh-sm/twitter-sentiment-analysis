@@ -45,14 +45,14 @@ before_install:
 
 install:
   - pip install python-dotenv
+  - pip install flask
   - pip install tweepy
+  - pip install textblob
   - pip install coverage
   - pip install pytest
   - pip install pytest-cov
-  - pip install codecov
   - pip install matplotlib
-  - pip install textblob
-  - pip install flask
+  - pip install elasticsearch
 
 script:
   - ./tests/environment_variables.sh

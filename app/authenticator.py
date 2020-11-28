@@ -1,6 +1,6 @@
 from tweepy import OAuthHandler
 
-import keys
+from app import keys
 
 class TwitterAuthenticator:
 

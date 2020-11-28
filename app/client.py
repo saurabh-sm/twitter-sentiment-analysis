@@ -1,20 +1,28 @@
 from tweepy import API
 from tweepy import Cursor
 
-from authenticator import TwitterAuthenticator
+from app.authenticator import TwitterAuthenticator
 
 class TwitterClient():
 
     def __init__(self, twitter_user=None):
         self.auth = TwitterAuthenticator().authenticate_twitter_app()
-        self.twitter_client = API(self.auth)
-        self.twitter_user = twitter_user  # if no user is specified, timeline content will be from your twitter handle
+        self.twitter_client = API(self.auth, wait_on_rate_limit=True)    # obey rate limit
+        self.twitter_user = twitter_user
 
-    def get_user_timeline_tweets(self, num_tweets):
-        tweets = []
-        for tweet in Cursor(self.twitter_client.user_timeline, id=self.twitter_user).items(num_tweets):
-            tweets.append(tweet)
-        return tweets
+    def get_timeline_tweets(self, num_tweets):
+        """
+        Get tweets from a specified user's timeline if specified.
+        If user is not specified, get tweets from the developer's account.
+        """
+        timeline_tweets = []
+        if self.twitter_user:
+            for tweet in Cursor(self.twitter_client.user_timeline, id=self.twitter_user).items(num_tweets):
+                timeline_tweets.append(tweet)
+        else:
+            for tweet in Cursor(self.twitter_client.home_timeline, id=self.twitter_user).items(num_tweets):
+                timeline_tweets.append(tweet)
+        return timeline_tweets
 
     def get_friend_list(self, num_friends):
         friend_list = []
@@ -22,30 +30,25 @@ class TwitterClient():
             friend_list.append(friend)
         return friend_list
 
-    def get_home_timeline_tweets(self, num_tweets):
-        home_timeline_tweets = []
-        for tweet in Cursor(self.twitter_client.home_timeline, id=self.twitter_user).items(num_tweets):
-            home_timeline_tweets.append(tweet)
-        return home_timeline_tweets
-
-    def get_twitter_client_api(self):
-        return self.twitter_client
-
-    def get_tweets(self, searchTerm, NoOfTerms):
+    def get_tweets(self, search_term, num_tweets):
         tweets = []
-        #for tweet in Cursor(self.twitter_client.user_timeline, id=self.twitter_user).items(num_tweets):
-        for tweet in Cursor(self.twitter_client.search, q=searchTerm, lang = "en").items(NoOfTerms):
+        for tweet in Cursor(self.twitter_client.search, q=search_term, lang = "en").items(num_tweets):
             tweets.append(tweet)
         return tweets
 
 def main():
 
-    twitter_client = TwitterClient()                # optional specify @ handle
-    print(twitter_client.get_user_timeline_tweets(1))       # get 'n' most recent stuff from your timeline
+    twitter_client = TwitterClient()
+    print(twitter_client.get_timeline_tweets(1))       # get 'n' most recent stuff from your timeline
+    print('\n')
+
+    metadata = twitter_client.get_timeline_tweets(1)
+    print(metadata)
     print()
-    print(twitter_client.get_friend_list(1))
-    print()
-    print(twitter_client.get_home_timeline_tweets(1))
+
+    #print(twitter_client.get_friend_list(1))
+    #print('\n')
+    #print(twitter_client.get_tweets('chelsea', 1))
 
 
 if __name__ == '__main__':

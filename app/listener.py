@@ -52,6 +52,7 @@ class TwitterListener(StreamListener):
         return False
 
     def on_error(self, status):
-        if status == 420:   # repeated access with incorrect stuff / rate limit will lock the developer account
+        """Repeated access after rate limit will lock developer account."""
+        if status == 420:
             return False
         print(status)

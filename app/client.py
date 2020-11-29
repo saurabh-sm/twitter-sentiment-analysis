@@ -36,6 +36,7 @@ class TwitterClient():
             tweets.append(tweet)
         return tweets
 
+'''
 def main():
 
     twitter_client = TwitterClient()
@@ -51,3 +52,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+'''

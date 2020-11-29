@@ -16,7 +16,7 @@ def test_api_secret_key_exists():
     '''
     Ensure API key password has been set for the session.
     '''
-    assert keys.API_SECRET_KEY is not None
+    assert keys.API_KEY_SECRET is not None
 
 def test_access_token_exists():
     '''
@@ -40,7 +40,7 @@ def test_api_key_secret_string():
     '''
     Verify data type of API key password is a string.
     '''
-    assert type(keys.API_SECRET_KEY) is str
+    assert type(keys.API_KEY_SECRET) is str
 
 def test_access_token_string():
     '''

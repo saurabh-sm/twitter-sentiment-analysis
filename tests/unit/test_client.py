@@ -26,6 +26,24 @@ class TestTwitterClient(unittest.TestCase):
     def test_custom_timeline_type(self):
         self.assertIsInstance(self.custom_user.get_timeline_tweets(1), list)
 
+    def test_default_user_friends(self):
+        self.assertIsNotNone(self.default_user.get_friend_list(1))
+
+    def test_custom_user_friends(self):
+        self.assertIsNotNone(self.custom_user.get_friend_list(1))
+
+    def test_default_user_friends_type(self):
+        self.assertIsInstance(self.default_user.get_friend_list(1), list)
+
+    def test_custom_user_friends_type(self):
+        self.assertIsInstance(self.custom_user.get_friend_list(1), list)
+
+    def test_get_tweets(self):
+        self.assertIsNotNone(self.default_user.get_tweets('chelsea', 1))
+
+    def test_get_tweets_type(self):
+        self.assertIsInstance(self.default_user.get_tweets('chelsea', 1), list)
+
 
 if __name__ == '__main__':
     main()

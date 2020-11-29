@@ -39,16 +39,14 @@ class TwitterClient():
 def main():
 
     twitter_client = TwitterClient()
-    print(twitter_client.get_timeline_tweets(1))       # get 'n' most recent stuff from your timeline
+
+    print(twitter_client.get_timeline_tweets(1))
     print('\n')
-
-    metadata = twitter_client.get_timeline_tweets(1)
-    print(metadata)
-    print()
-
-    #print(twitter_client.get_friend_list(1))
-    #print('\n')
-    #print(twitter_client.get_tweets('chelsea', 1))
+    twitter_client.get_timeline_tweets(1)
+    print('\n')
+    print(twitter_client.get_friend_list(1))
+    print('\n')
+    print(twitter_client.get_tweets('chelsea', 1))
 
 
 if __name__ == '__main__':

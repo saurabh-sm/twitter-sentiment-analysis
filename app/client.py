@@ -40,18 +40,20 @@ class TwitterClient():
         return tweets
 
 
+'''
 def main():
 
     twitter_client = TwitterClient()
     print(type(twitter_client.get_twitter_client_api()))
-    #print(twitter_client.get_timeline_tweets(1))
-    #print('\n')
-    #twitter_client.get_timeline_tweets(1)
-    #print('\n')
-    #print(twitter_client.get_friend_list(1))
-    #print('\n')
-    #print(twitter_client.get_tweets('chelsea', 1))
+    print(twitter_client.get_timeline_tweets(1))
+    print('\n')
+    twitter_client.get_timeline_tweets(1)
+    print('\n')
+    print(twitter_client.get_friend_list(1))
+    print('\n')
+    print(twitter_client.get_tweets('chelsea', 1))
 
 
 if __name__ == '__main__':
     main()
+'''

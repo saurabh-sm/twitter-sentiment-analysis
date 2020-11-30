@@ -23,11 +23,11 @@
 
 + Initiate Python 3 virtual environment:
 
-  `python3 -m venv twitter`
+  `python3 -m venv twitter-sentiment`
 
 + Activate newly created virtual environment:
 
-  `source twitter/bin/activate`
+  `source twitter-sentiment/bin/activate`
 
 + Update pip:
 
@@ -36,6 +36,7 @@
 + Install required packages in the virtual environment:
 
   `pip install --requirement requirements.txt`
+
 
 ----
 
@@ -49,12 +50,12 @@
 
 + Run flask microservices:
 
-  **Note**:
-
-    + The script `twitter_sentiment_analysis.py` is the entrypoint to the application
-    + `.flaskenv` contains configuration for flask
-
   `flask run`
+
++ On the web browser, go to:
+
+  `http://127.0.0.1:5500/`
+
 
 ----
 
@@ -64,11 +65,20 @@
 
 + Start services for elasticsearch and kibana:
 
-  `sudo -i service elasticsearch start`
+  **Linux**:
 
-  `sudo -i service kibana start`
+  ```
+  sudo -i service elasticsearch start
+  sudo -i service kibana start
+  ```
+  **macOS**:
 
-+ Check Elasticsearch status:
+  ```
+  brew services start elasticsearch
+  brew services start kibana
+  ```
+
++ Check Elasticsearch status in the terminal:
 
   `curl -X GET "localhost:9200/?pretty"`
 
@@ -94,7 +104,7 @@
   }
   ```
 
-+ Check Kibana status in the browser with the below URL:
++ Check Kibana status in the web browser:
 
   `http://localhost:5601/app/dev_tools#/console?load_from=https:/www.elastic.co/guide/en/elasticsearch/reference/7.10/snippets/19.console`
 
@@ -102,6 +112,30 @@
 
   `python3 app/streamer.py`
 
++ Setup monitoring:
+
+  + Go to the [Elasticsearch dashboard]
+
+  + Scroll down to *Management* in the dock navigation menu
+
+  + Click on *Stack Management*
+
+  + Under the *Kibana* section, click on "*Index Patterns*"
+
+  + The *index* attribute associated with the `elasticsearch.index` object will show up; select it and verify the fields
+
+  + Click on the dock navigation menu and go to *Discover* under the Kibana section
+
+    + Here the data streamed by `app/streamer.py` will be displayed.
+
+    + Figure out data which will be visualized on the x and y axis.
+
+  + Now click on the dock navigation menu and go to *Dashboard* under the Kibana section
+
+    + Create the desired visualization
+
+----
 
 [Elasticsearch]: https://www.elastic.co/downloads/elasticsearch
 [Kibana]: https://www.elastic.co/downloads/kibana
+[Elasticsearch dashboard]: http://localhost:5601/app/management

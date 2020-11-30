@@ -1,3 +1,4 @@
+{#
 {% block content %}
     <h1>Hello!</h1>
     {% for index, data in report_data.items() %}
@@ -6,3 +7,8 @@
     </div></p>
     {% endfor %}
 {% endblock %}
+#}
+
+<p>{{ name }}</p>
+
+<img src={{ url }} alt="Chart" height="500" width="600">

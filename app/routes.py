@@ -1,7 +1,9 @@
-from flask import Flask, redirect, url_for, render_template, request
+from flask import Flask, Response, redirect, url_for, render_template, request
 
 from app import app
 
+from app.analyzer import Analyzer
+from app.client import TwitterClient
 
 @app.route("/")
 @app.route("/home")
@@ -28,11 +30,13 @@ def static_summary_report():
 
 @app.route("/static-analysis/piechart", methods=["GET", "POST"])
 def static_piechart():
+    tweet_analyzer = Analyzer()
     if request.method == "POST":
         hash_tag = request.form['piechart_hashtag']
         num_tweets = request.form['piechart_tweets']
         piechart_data = request.form.to_dict()
-        return render_template("query-piechart.html", report_data=piechart_data)
+        tweet_analyzer.create_chart(hash_tag, int(num_tweets))
+        return render_template("query-piechart.html", name = "Resulting Pie Chart", url = "/static/images/piechart.png")
     else:
         return render_template("piechart.html")
 

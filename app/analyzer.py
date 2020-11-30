@@ -1,8 +1,9 @@
 import re
-import matplotlib.pyplot as plt
 
+import matplotlib.pyplot as plt
 from textblob import TextBlob
-from client import TwitterClient
+
+from app.client import TwitterClient
 
 class Analyzer:
 

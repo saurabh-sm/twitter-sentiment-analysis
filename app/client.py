@@ -10,6 +10,9 @@ class TwitterClient():
         self.twitter_client = API(self.auth, wait_on_rate_limit=True)    # obey rate limit
         self.twitter_user = twitter_user
 
+    def get_twitter_client_api(self):
+        return self.twitter_client
+
     def get_timeline_tweets(self, num_tweets):
         """
         Get tweets from a specified user's timeline if specified.
@@ -36,20 +39,19 @@ class TwitterClient():
             tweets.append(tweet)
         return tweets
 
-'''
+
 def main():
 
     twitter_client = TwitterClient()
-
-    print(twitter_client.get_timeline_tweets(1))
-    print('\n')
-    twitter_client.get_timeline_tweets(1)
-    print('\n')
-    print(twitter_client.get_friend_list(1))
-    print('\n')
-    print(twitter_client.get_tweets('chelsea', 1))
+    print(type(twitter_client.get_twitter_client_api()))
+    #print(twitter_client.get_timeline_tweets(1))
+    #print('\n')
+    #twitter_client.get_timeline_tweets(1)
+    #print('\n')
+    #print(twitter_client.get_friend_list(1))
+    #print('\n')
+    #print(twitter_client.get_tweets('chelsea', 1))
 
 
 if __name__ == '__main__':
     main()
-'''

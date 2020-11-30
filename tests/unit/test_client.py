@@ -1,5 +1,7 @@
 import unittest
 
+import tweepy
+
 from app.client import TwitterClient
 
 class TestTwitterClient(unittest.TestCase):
@@ -7,6 +9,12 @@ class TestTwitterClient(unittest.TestCase):
     def setUp(self):
         self.default_user = TwitterClient()
         self.custom_user = TwitterClient('chelseafc')
+
+    def test_default_client_api(self):
+        self.assertIsNotNone(self.default_user)
+
+    def test_custom_client_api(self):
+        self.assertIsNotNone(self.custom_user)
 
     def test_default_user_present(self):
         self.assertTrue(self.default_user)

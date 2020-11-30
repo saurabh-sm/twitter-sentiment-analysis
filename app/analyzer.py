@@ -1,6 +1,9 @@
 import re
 
+import matplotlib
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
+
 from textblob import TextBlob
 
 from app.client import TwitterClient
@@ -64,7 +67,7 @@ class Analyzer:
 
 
     def sentiment_report(self, searchTerm, NoOfTerms):
-        print("How people are reacting on " + searchTerm + " by analyzing " + str(NoOfTerms) + " tweets.")
+        print('Analyzing ' + str(NoOfTerms) + ' tweets from people reacting on term: ' + searchTerm)
         print()
         print("General Report: ")
 
@@ -113,16 +116,25 @@ class Analyzer:
 
         patches, texts = plt.pie(sizes, colors=colors, startangle=90)
 
-        plt.legend(patches, labels, loc="best")
+        plt.legend(labels, loc="best")
 
-        plt.title('How people are reacting on ' + searchTerm + ' by analyzing '
-            + str(noOfSearchTerms) + ' Tweets.')
+        plt.title('Analyzing ' + str(noOfSearchTerms) + ' tweets from people reacting on term: ' + searchTerm)
 
         plt.axis('equal')
 
         plt.tight_layout()
 
-        plt.show()
+        # plt.show()
+        plt.savefig('app/static/images/piechart.png')
+
+
+    def create_chart(self, search_term, number_of_searches):
+        twitter_client = TwitterClient()
+        twitter_api = twitter_client.get_twitter_client_api()
+        filtered_tweets = twitter_client.get_tweets(search_term, number_of_searches)
+        self.get_tweets_and_analyze(filtered_tweets, search_term, number_of_searches)
+        self.compute_average(search_term, number_of_searches)
+        self.sentiment_report(search_term, number_of_searches)
 
 
 

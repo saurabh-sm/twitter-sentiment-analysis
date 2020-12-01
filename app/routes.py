@@ -1,9 +1,8 @@
 from flask import Flask, Response, redirect, url_for, render_template, request
 
 from app import app
-
 from app.analyzer import Analyzer
-from app.client import TwitterClient
+
 
 @app.route("/")
 @app.route("/home")

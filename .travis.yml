@@ -65,7 +65,6 @@ install:
   - pip install elasticsearch
 
 script:
-  - ./tests/environment_variables.sh
   - coverage run -m pytest -v
   - coverage report -m
   - coverage xml

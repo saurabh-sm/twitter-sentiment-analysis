@@ -148,7 +148,16 @@ class Analyzer:
         self.get_tweets_and_analyze(filtered_tweets, search_term, number_of_searches)
         self.compute_average(number_of_searches)
         self.sentiment_report(search_term, number_of_searches)
-
+        report = {
+            'positive': self.positive,
+            'weak positive': self.wpositive,
+            'strong positive': self.spositive,
+            'neutral': self.neutral,
+            'negative': self.negative,
+            'weak negative': self.wnegative,
+            'strong negative': self.snegative,
+        }
+        return report
 
     def create_chart(self, search_term, number_of_searches):
         twitter_client = TwitterClient()

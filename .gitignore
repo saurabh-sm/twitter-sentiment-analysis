@@ -6,3 +6,4 @@ TODO.txt
 live_tweets.json
 tests/coverage/.coverage
 tests/coverage/coverage.xml
+app/static/images/piechart.png

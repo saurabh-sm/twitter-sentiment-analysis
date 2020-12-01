@@ -18,10 +18,12 @@ def static_analysis():
 
 @app.route("/static-analysis/summary-report", methods=["GET", "POST"])
 def static_summary_report():
+    tweet_analyzer = Analyzer()
     if request.method == "POST":
         hash_tag = request.form['summary_report_hashtag']
         num_tweets = request.form['summary_report_tweets']
-        summary_report_data = request.form.to_dict()    # key-value pairs in the form of field: data
+        test_summary_report_data = request.form.to_dict()    # key-value pairs in the form of field: data
+        summary_report_data = tweet_analyzer.create_report(hash_tag, int(num_tweets))
         return render_template("query-summary-report.html", report_data=summary_report_data)
     else:
         return render_template("summary-report.html")

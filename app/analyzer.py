@@ -142,12 +142,20 @@ class Analyzer:
         return False
 
 
+    def create_report(self, search_term, number_of_searches):
+        twitter_client = TwitterClient()
+        filtered_tweets = twitter_client.get_tweets(search_term, number_of_searches)
+        self.get_tweets_and_analyze(filtered_tweets, search_term, number_of_searches)
+        self.compute_average(number_of_searches)
+        self.sentiment_report(search_term, number_of_searches)
+
+
     def create_chart(self, search_term, number_of_searches):
         twitter_client = TwitterClient()
         filtered_tweets = twitter_client.get_tweets(search_term, number_of_searches)
         self.get_tweets_and_analyze(filtered_tweets, search_term, number_of_searches)
-        self.compute_average(search_term, number_of_searches)
-        self.sentiment_report(search_term, number_of_searches)
+        self.compute_average(number_of_searches)
+        self.plot_piechart(search_term, number_of_searches)
 
 
 '''

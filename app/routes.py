@@ -37,7 +37,7 @@ def static_piechart():
         num_tweets = request.form['piechart_tweets']
         piechart_data = request.form.to_dict()
         tweet_analyzer.create_chart(hash_tag, int(num_tweets))
-        return render_template("query-piechart.html", name = "Resulting Pie Chart", url = "/static/images/piechart.png")
+        return render_template("query-piechart.html", name = "Pie Chart", url = "/static/images/piechart.png")
     else:
         return render_template("piechart.html")
 

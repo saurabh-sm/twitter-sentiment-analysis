@@ -2,6 +2,7 @@ from flask import Flask, Response, redirect, url_for, render_template, request
 
 from app import app
 from app.analyzer import Analyzer
+from app.streamer import Streamer
 
 
 @app.route("/")
@@ -37,16 +38,21 @@ def static_piechart():
         num_tweets = request.form['piechart_tweets']
         piechart_data = request.form.to_dict()
         tweet_analyzer.create_chart(hash_tag, int(num_tweets))
-        return render_template("query-piechart.html", name = "Pie Chart", url = "/static/images/piechart.png")
+        return render_template("query-piechart.html", name="Pie Chart", url="/static/images/piechart.png")
     else:
         return render_template("piechart.html")
 
 
-@app.route("/dynamic-analysis")
-@app.route("/dynamic-analysis/")
+@app.route("/dynamic-analysis", methods=["GET", "POST"])
+@app.route("/dynamic-analysis/", methods=["GET", "POST"])
 def dynamic_analysis():
-    return render_template("dynamic-analysis.html")
-
+    tweet_streamer = Streamer()
+    if request.method == "POST":
+        hash_tag = request.form['dynamic_hashtag']
+        #tweet_streamer.stream_tweets(hash_tag)
+        return render_template("query-dynamic-analysis.html")
+    else: # request.method == "GET":
+        return render_template("dynamic-analysis.html")
 
 
 if __name__ == '__main__':

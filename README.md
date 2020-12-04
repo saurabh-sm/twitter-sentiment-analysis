@@ -78,8 +78,8 @@
   **macOS**:
 
   ```
-  brew services start elasticsearch
-  brew services start kibana
+  brew services start elasticsearch-full
+  brew services start kibana-full
   ```
 
 + Check Elasticsearch status in the terminal:

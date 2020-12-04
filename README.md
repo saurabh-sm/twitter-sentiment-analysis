@@ -37,6 +37,10 @@
 
   `pip install --requirement requirements.txt`
 
++ Set `PYTHONPATH` environment variable:
+
+  `export PYTHONPATH=$PWD`
+
 
 ----
 

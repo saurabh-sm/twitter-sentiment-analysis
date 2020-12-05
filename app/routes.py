@@ -49,8 +49,8 @@ def dynamic_analysis():
     tweet_streamer = Streamer()
     if request.method == "POST":
         hash_tag = request.form['dynamic_hashtag']
-        #tweet_streamer.stream_tweets(hash_tag)
-        return render_template("query-dynamic-analysis.html")
+        data_stream = tweet_streamer.stream_tweets(hash_tag)
+        return render_template("query-dynamic-analysis.html", dynamic_data=data_stream)
     else: # request.method == "GET":
         return render_template("dynamic-analysis.html")
 

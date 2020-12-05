@@ -2,7 +2,7 @@ from tweepy import Stream
 
 from app import keys
 
-from app.listener import TwitterListener
+from app.listener2 import TwitterListener
 from app.authenticator import TwitterAuthenticator
 
 
@@ -15,9 +15,9 @@ class Streamer():
         listener = TwitterListener()
         auth = self.twitter_authenticator.authenticate_twitter_app()
         stream = Stream(auth, listener)
-        stream.filter(track=hash_tag_list)
+        return stream.filter(track=hash_tag_list)
 
-
+'''
 def main():
 
     tweet_streamer = Streamer()
@@ -28,3 +28,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+'''

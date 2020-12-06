@@ -17,7 +17,7 @@ class Streamer():
         stream = Stream(auth, listener)
         return stream.filter(track=hash_tag_list)
 
-
+'''
 def main():
 
     tweet_streamer = Streamer()
@@ -28,4 +28,4 @@ def main():
 
 if __name__ == '__main__':
     main()
-
+'''

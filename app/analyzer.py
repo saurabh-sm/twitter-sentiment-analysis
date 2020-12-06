@@ -165,6 +165,7 @@ class Analyzer:
         self.get_tweets_and_analyze(filtered_tweets, search_term, number_of_searches)
         self.compute_average(number_of_searches)
         self.plot_piechart(search_term, number_of_searches)
+        return
 
 
 '''

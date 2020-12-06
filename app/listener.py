@@ -10,8 +10,6 @@ class TwitterListener(StreamListener):
     def __init__(self):
         self.es = Elasticsearch()
         self.es.indices.create(index='twitter', ignore=400)
-        self.tweets = []
-        self.tweetText = []
 
 
     def on_data(self, data):

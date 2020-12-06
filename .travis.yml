@@ -47,9 +47,7 @@ jobs:
       before_install:
         - choco install elasticsearch
         - choco install python --version 3.8.0
-        - cd /c/ProgramData/chocolatey/lib/elasticsearch/tools/elasticsearch-7.10.0/bin
-        - dir
-        - refreshenv
+        - elasticsearch-service.bat start
         - python -m pip install virtualenv
         - python -m virtualenv twitter-sentiment
         - source twitter-sentiment/Scripts/activate

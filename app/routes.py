@@ -53,7 +53,3 @@ def dynamic_analysis():
         return render_template("query-dynamic-analysis.html", dynamic_data=data_stream)
     else: # request.method == "GET":
         return render_template("dynamic-analysis.html")
-
-
-if __name__ == '__main__':
-    app.run(debug=True)

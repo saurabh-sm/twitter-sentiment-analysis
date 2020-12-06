@@ -81,65 +81,55 @@ class Analyzer:
 
 
     def sentiment_report(self, searchTerm, num_tweets):
-        try:
-            print('Analyzing ' + str(num_tweets) + ' tweets from people reacting on term: ' + searchTerm)
-            print()
-            print("General Report: ")
+        print('Analyzing ' + str(num_tweets) + ' tweets from people reacting on term: ' + searchTerm)
+        print()
+        print("General Report: ")
 
-            if (self.polarity == 0):
-                print("Neutral")
-            elif (self.polarity > 0 and self.polarity <= 0.3):
-                print("Weakly positive")
-            elif (self.polarity > 0.3 and self.polarity <= 0.6):
-                print("Positive")
-            elif (self.polarity > 0.6 and self.polarity <= 1):
-                print("Strongly positive")
-            elif (self.polarity > -0.3 and self.polarity <= 0):
-                print("Weakly Negative")
-            elif (self.polarity > -0.6 and self.polarity <= -0.3):
-                print("Negative")
-            elif (self.polarity > -1 and self.polarity <= -0.6):
-                print("Strongly Negative")
+        if (self.polarity == 0):
+            print("Neutral")
+        elif (self.polarity > 0 and self.polarity <= 0.3):
+            print("Weakly positive")
+        elif (self.polarity > 0.3 and self.polarity <= 0.6):
+            print("Positive")
+        elif (self.polarity > 0.6 and self.polarity <= 1):
+            print("Strongly positive")
+        elif (self.polarity > -0.3 and self.polarity <= 0):
+            print("Weakly Negative")
+        elif (self.polarity > -0.6 and self.polarity <= -0.3):
+            print("Negative")
+        else: # (self.polarity > -1 and self.polarity <= -0.6):
+            print("Strongly Negative")
 
-            print()
-            print("Detailed Report: ")
-            print(str(self.positive) + "% people thought it was positive")
-            print(str(self.wpositive) + "% people thought it was weakly positive")
-            print(str(self.spositive) + "% people thought it was strongly positive")
-            print(str(self.neutral) + "% people thought it was neutral")
-            print(str(self.negative) + "% people thought it was negative")
-            print(str(self.wnegative) + "% people thought it was weakly negative")
-            print(str(self.snegative) + "% people thought it was strongly negative")
+        print()
+        print("Detailed Report: ")
+        print(str(self.positive) + "% people thought it was positive")
+        print(str(self.wpositive) + "% people thought it was weakly positive")
+        print(str(self.spositive) + "% people thought it was strongly positive")
+        print(str(self.neutral) + "% people thought it was neutral")
+        print(str(self.negative) + "% people thought it was negative")
+        print(str(self.wnegative) + "% people thought it was weakly negative")
+        print(str(self.snegative) + "% people thought it was strongly negative")
 
-            return True
-
-        except Exception as ex:
-            print("EXCEPTION: %s", str(ex))
-        return False
+        return True
 
 
     def plot_piechart(self, searchTerm, noOfSearchTerms):
-        try:
-            labels = ['positive [' + str(self.positive) + '%]', 'Weakly positive [' + str(self.wpositive) + '%]',
-                      'Strongly positive [' + str(self.spositive) + '%]', 'Neutral [' + str(self.neutral) + '%]',
-                      'Negative [' + str(self.negative) + '%]', 'Weakly Negative [' + str(self.wnegative) + '%]',
-                      'Strongly Negative [' + str(self.snegative) + '%]']
+        labels = ['positive [' + str(self.positive) + '%]', 'Weakly positive [' + str(self.wpositive) + '%]',
+                  'Strongly positive [' + str(self.spositive) + '%]', 'Neutral [' + str(self.neutral) + '%]',
+                  'Negative [' + str(self.negative) + '%]', 'Weakly Negative [' + str(self.wnegative) + '%]',
+                  'Strongly Negative [' + str(self.snegative) + '%]']
 
-            sizes = [self.positive, self.wpositive, self.spositive, self.neutral, self.negative, self.wnegative, self.snegative]
-            colors = ['yellowgreen','lightgreen','darkgreen', 'gold', 'red','lightsalmon','darkred']
-            patches, texts = plt.pie(sizes, colors=colors, startangle=90)
-            plt.legend(labels, loc="best")
-            plt.title('Analyzing ' + str(noOfSearchTerms) + ' tweets from people reacting on term: ' + searchTerm)
-            plt.axis('equal')
-            plt.tight_layout()
-            # plt.show()
-            plt.savefig('app/static/images/piechart.png')
+        sizes = [self.positive, self.wpositive, self.spositive, self.neutral, self.negative, self.wnegative, self.snegative]
+        colors = ['yellowgreen','lightgreen','darkgreen', 'gold', 'red','lightsalmon','darkred']
+        patches, texts = plt.pie(sizes, colors=colors, startangle=90)
+        plt.legend(labels, loc="best")
+        plt.title('Analyzing ' + str(noOfSearchTerms) + ' tweets from people reacting on term: ' + searchTerm)
+        plt.axis('equal')
+        plt.tight_layout()
+        # plt.show()
+        plt.savefig('app/static/images/piechart.png')
 
-            return True
-
-        except Exception as ex:
-            print("EXCEPTION: %s", str(ex))
-        return False
+        return True
 
 
     def create_report(self, search_term, number_of_searches):

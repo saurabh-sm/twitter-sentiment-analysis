@@ -2,7 +2,7 @@ from tweepy import Stream
 
 from app import keys
 
-from app.listener2 import TwitterListener
+from app.listener import TwitterListener
 from app.authenticator import TwitterAuthenticator
 
 
@@ -17,15 +17,15 @@ class Streamer():
         stream = Stream(auth, listener)
         return stream.filter(track=hash_tag_list)
 
-'''
+
 def main():
 
     tweet_streamer = Streamer()
-    hash_tag = ['Donald Trump']
+    hash_tag = ['Arsenal']
     # hash_tags = ['Donald Trump', 'Joe Biden']     # returns sentiment for both trackers
     tweet_streamer.stream_tweets(hash_tag)
 
 
 if __name__ == '__main__':
     main()
-'''
+

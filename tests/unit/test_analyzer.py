@@ -23,6 +23,10 @@ class TestAnalyzer(unittest.TestCase):
         filtered_tweets = self.test_filtered_tweets()
         self.assertTrue(self.analyzer.get_tweets_and_analyze(filtered_tweets, self.search_term, self.number_of_tweets))
 
+    def test_get_tweets_and_analyze_exception(self):
+        filtered_tweets = self.test_filtered_tweets()
+        self.assertRaises(Exception, self.analyzer.get_tweets_and_analyze(filtered_tweets, self.search_term, 0))
+
     def test_percentage(self):
         self.assertIsNotNone(self.analyzer.percentage(2, self.number_of_tweets))
 
@@ -35,14 +39,8 @@ class TestAnalyzer(unittest.TestCase):
     def test_sentiment_report(self):
         self.assertTrue(self.analyzer.sentiment_report(self.search_term, self.number_of_tweets))
 
-    def test_sentiment_report_exception(self):
-        self.assertRaises(Exception, self.analyzer.sentiment_report('', 0))
-
     def test_plot_pie_chart(self):
         self.assertTrue(self.analyzer.plot_piechart(self.search_term, self.number_of_tweets))
-
-    def test_plot_pie_chart_exception(self):
-        self.assertRaises(Exception, self.analyzer.plot_piechart('', 0))
 
     def test_create_report(self):
         filtered_tweets = self.test_filtered_tweets()

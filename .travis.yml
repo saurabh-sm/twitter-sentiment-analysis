@@ -21,8 +21,7 @@ jobs:
         - sudo apt-get update && sudo apt-get install elasticsearch kibana
         - virtualenv -p python twitter-sentiment
         - source twitter-sentiment/bin/activate
-        - sudo systemctl start elasticsearch
-        - sudo systemctl start kibana
+        - sudo service elasticsearch start
     - name: "Python 3.8 on macOS 10.15"
       os: osx
       osx_image: xcode11.6
@@ -71,6 +70,9 @@ install:
   - pip install blinker
   - pip install matplotlib
   - pip install elasticsearch
+
+before_script:
+  - sleep 10
 
 script:
   - coverage run -m pytest -v

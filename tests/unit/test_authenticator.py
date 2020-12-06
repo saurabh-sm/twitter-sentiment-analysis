@@ -15,6 +15,3 @@ class TestTwitterAuthenticator(unittest.TestCase):
     def test_auth_object(self):
         self.assertIsInstance(self.authenticator.authenticate_twitter_app(),
                               tweepy.auth.OAuthHandler)
-
-if __name__ == '__main__':
-    main()

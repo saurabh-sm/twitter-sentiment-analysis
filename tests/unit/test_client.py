@@ -51,7 +51,3 @@ class TestTwitterClient(unittest.TestCase):
 
     def test_get_tweets_type(self):
         self.assertIsInstance(self.default_user.get_tweets('chelsea', 1), list)
-
-
-if __name__ == '__main__':
-    main()

@@ -71,9 +71,6 @@ install:
   - pip install matplotlib
   - pip install elasticsearch
 
-before_script:
-  - sleep 10
-
 script:
   - coverage run -m pytest -v
   - coverage report -m

@@ -24,33 +24,28 @@ class Analyzer:
 
 
     def get_tweets_and_analyze(self, filtered_tweets, searchTerm, num_tweets):
-        try:
-            self.tweets = filtered_tweets
-            for tweet in self.tweets:
-                self.tweetText.append(self.clean_tweet(tweet.text).encode('utf-8'))
-                analysis = TextBlob(tweet.text)
-                self.polarity += analysis.sentiment.polarity
+        self.tweets = filtered_tweets
+        for tweet in self.tweets:
+            self.tweetText.append(self.clean_tweet(tweet.text).encode('utf-8'))
+            analysis = TextBlob(tweet.text)
+            self.polarity += analysis.sentiment.polarity
 
-                if (analysis.sentiment.polarity == 0):
-                    self.neutral += 1
-                elif (analysis.sentiment.polarity > 0 and analysis.sentiment.polarity <= 0.3):
-                    self.wpositive += 1
-                elif (analysis.sentiment.polarity > 0.3 and analysis.sentiment.polarity <= 0.6):
-                    self.positive += 1
-                elif (analysis.sentiment.polarity > 0.6 and analysis.sentiment.polarity <= 1):
-                    self.spositive += 1
-                elif (analysis.sentiment.polarity > -0.3 and analysis.sentiment.polarity <= 0):
-                    self.wnegative += 1
-                elif (analysis.sentiment.polarity > -0.6 and analysis.sentiment.polarity <= -0.3):
-                    self.negative += 1
-                elif (analysis.sentiment.polarity > -1 and analysis.sentiment.polarity <= -0.6):
-                    self.snegative += 1
+            if (analysis.sentiment.polarity == 0):
+                self.neutral += 1
+            elif (analysis.sentiment.polarity > 0 and analysis.sentiment.polarity <= 0.3):
+                self.wpositive += 1
+            elif (analysis.sentiment.polarity > 0.3 and analysis.sentiment.polarity <= 0.6):
+                self.positive += 1
+            elif (analysis.sentiment.polarity > 0.6 and analysis.sentiment.polarity <= 1):
+                self.spositive += 1
+            elif (analysis.sentiment.polarity > -0.3 and analysis.sentiment.polarity <= 0):
+                self.wnegative += 1
+            elif (analysis.sentiment.polarity > -0.6 and analysis.sentiment.polarity <= -0.3):
+                self.negative += 1
+            elif (analysis.sentiment.polarity > -1 and analysis.sentiment.polarity <= -0.6):
+                self.snegative += 1
 
-            return True
-
-        except Exception as ex:
-            print("EXCEPTION: %s", str(ex))
-        return False
+        return True
 
 
     def clean_tweet(self, tweet):

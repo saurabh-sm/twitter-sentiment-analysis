@@ -23,10 +23,6 @@ class TestAnalyzer(unittest.TestCase):
         filtered_tweets = self.test_filtered_tweets()
         self.assertTrue(self.analyzer.get_tweets_and_analyze(filtered_tweets, self.search_term, self.number_of_tweets))
 
-    def test_get_tweets_and_analyze_exception(self):
-        filtered_tweets = self.test_filtered_tweets()
-        self.assertRaises(Exception, self.analyzer.get_tweets_and_analyze(filtered_tweets, self.search_term, 0))
-
     def test_percentage(self):
         self.assertIsNotNone(self.analyzer.percentage(2, self.number_of_tweets))
 

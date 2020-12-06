@@ -21,6 +21,8 @@ jobs:
         - sudo apt-get update && sudo apt-get install elasticsearch kibana
         - virtualenv -p python twitter-sentiment
         - source twitter-sentiment/bin/activate
+        - sudo -i service elasticsearch start
+        - sudo -i service kibana start
     - name: "Python 3.8 on macOS 10.15"
       os: osx
       osx_image: xcode11.6
@@ -36,6 +38,8 @@ jobs:
         - python3 -m pip install virtualenv
         - python3 -m virtualenv twitter-sentiment
         - source twitter-sentiment/bin/activate
+        - brew services start elasticsearch-full
+        - brew services start kibana-full
     - name: "Python 3.8 on Windows 10"
       os: windows
       language: shell

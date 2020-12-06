@@ -41,15 +41,15 @@ jobs:
         - python3 -m virtualenv twitter-sentiment
         - source twitter-sentiment/bin/activate
         - brew services start elasticsearch-full
-        - brew services start kibana-full
     - name: "Python 3.8 on Windows 10"
       os: windows
       language: shell
-      env: PATH=/c/Python38:/c/Python38/Scripts:$PATH
+      env: PATH=/c/Python38:/c/Python38/Scripts:/c/ProgramData/chocolatey/lib/elasticsearch/tools/elasticsearch-7.10.0/bin:$PATH
       before_install:
         - choco install elasticsearch
-        - choco install kibana
         - choco install python --version 3.8.0
+        - cd C:\ProgramData\chocolatey\lib\elasticsearch\tools\elasticsearch-7.10.0\bin
+        - dir
         - python -m pip install virtualenv
         - python -m virtualenv twitter-sentiment
         - source twitter-sentiment/Scripts/activate

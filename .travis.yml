@@ -36,7 +36,6 @@ jobs:
       before_install:
         - brew tap elastic/tap
         - brew install elastic/tap/elasticsearch-full
-        - brew install elastic/tap/kibana-full
         - python3 -m pip install virtualenv
         - python3 -m virtualenv twitter-sentiment
         - source twitter-sentiment/bin/activate
@@ -48,7 +47,7 @@ jobs:
       before_install:
         - choco install elasticsearch
         - choco install python --version 3.8.0
-        - cd C:\ProgramData\chocolatey\lib\elasticsearch\tools\elasticsearch-7.10.0\bin
+        - cd /c/ProgramData/chocolatey/lib/elasticsearch/tools/elasticsearch-7.10.0/bin
         - dir
         - refreshenv
         - python -m pip install virtualenv

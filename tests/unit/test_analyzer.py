@@ -29,8 +29,24 @@ class TestAnalyzer(unittest.TestCase):
     def test_compute_average(self):
         self.assertTrue(self.analyzer.compute_average(self.number_of_tweets))
 
+    def test_compute_avarage_exception(self):
+        pass
+
     def test_sentiment_report(self):
         self.assertTrue(self.analyzer.sentiment_report(self.search_term, self.number_of_tweets))
 
+    def test_sentiment_report_exception(self):
+        pass
+
     def test_plot_pie_chart(self):
         self.assertTrue(self.analyzer.plot_piechart(self.search_term, self.number_of_tweets))
+
+    def test_plot_pie_chart_exception(self):
+        pass
+
+    def test_create_report(self):
+        pass
+
+    def test_create_chart(self):
+        pass
+

@@ -151,24 +151,3 @@ class Analyzer:
         self.compute_average(number_of_searches)
         self.plot_piechart(search_term, number_of_searches)
         return
-
-
-'''
-def main():
-
-    tweet_analyzer = Analyzer()
-    twitter_client = TwitterClient()
-
-    search_term = 'trump'
-    number_of_searches = 10
-
-    filtered_tweets = twitter_client.get_tweets(search_term, number_of_searches)
-    tweet_analyzer.get_tweets_and_analyze(filtered_tweets, search_term, number_of_searches)
-    tweet_analyzer.compute_average(number_of_searches)
-    tweet_analyzer.sentiment_report(search_term, number_of_searches)
-    tweet_analyzer.plot_piechart(search_term, number_of_searches)
-
-
-if __name__ == '__main__':
-    main()
-'''

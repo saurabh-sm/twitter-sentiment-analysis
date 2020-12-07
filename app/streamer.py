@@ -12,20 +12,8 @@ class Streamer():
         self.twitter_authenticator = TwitterAuthenticator()
 
     def stream_tweets(self, hash_tag_list):
+        """Hashtag list can have one more more terms."""
         listener = TwitterListener()
         auth = self.twitter_authenticator.authenticate_twitter_app()
         stream = Stream(auth, listener)
         return stream.filter(track=hash_tag_list)
-
-'''
-def main():
-
-    tweet_streamer = Streamer()
-    hash_tag = ['Arsenal']
-    # hash_tags = ['Donald Trump', 'Joe Biden']     # returns sentiment for both trackers
-    tweet_streamer.stream_tweets(hash_tag)
-
-
-if __name__ == '__main__':
-    main()
-'''

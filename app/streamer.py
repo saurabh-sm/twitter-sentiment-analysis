@@ -1,7 +1,5 @@
 from tweepy import Stream
 
-from app import keys
-
 from app.listener import TwitterListener
 from app.authenticator import TwitterAuthenticator
 

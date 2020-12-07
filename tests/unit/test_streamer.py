@@ -1,1 +1,1 @@
-'''Manual exit from program required.'''
+"""Manual exit from program required."""

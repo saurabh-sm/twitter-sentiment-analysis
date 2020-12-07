@@ -15,10 +15,7 @@ class TwitterClient():
         return self.twitter_client
 
     def get_timeline_tweets(self, num_tweets):
-        """
-        Get tweets from a specified user's timeline if specified.
-        If user is not specified, get tweets from the developer's account.
-        """
+        """Get specified number of tweets from specified user's timeline."""
         timeline_tweets = []
         if self.twitter_user:
             for tweet in Cursor(self.twitter_client.user_timeline, id=self.twitter_user).items(num_tweets):

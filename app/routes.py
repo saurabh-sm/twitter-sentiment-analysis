@@ -23,7 +23,7 @@ def static_summary_report():
     if request.method == "POST":
         hash_tag = request.form['summary_report_hashtag']
         num_tweets = request.form['summary_report_tweets']
-        test_summary_report_data = request.form.to_dict()    # key-value pairs in the form of field: data
+        # test_summary_report_data = request.form.to_dict()    # key-value pairs in the form of field: data
         summary_report_data = tweet_analyzer.create_report(hash_tag, int(num_tweets))
         return render_template("query-summary-report.html", report_data=summary_report_data)
     else:
@@ -36,7 +36,7 @@ def static_piechart():
     if request.method == "POST":
         hash_tag = request.form['piechart_hashtag']
         num_tweets = request.form['piechart_tweets']
-        piechart_data = request.form.to_dict()
+        # piechart_data = request.form.to_dict()
         tweet_analyzer.create_chart(hash_tag, int(num_tweets))
         return render_template("query-piechart.html", name="Pie Chart", url="/static/images/piechart.png")
     else:

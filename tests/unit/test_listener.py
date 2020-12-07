@@ -1,6 +1,4 @@
-'''
-Elasticsearch service has to be running!
-'''
+'''Elasticsearch service has to be running!'''
 
 import unittest
 

@@ -8,6 +8,7 @@ from elasticsearch import Elasticsearch
 class TwitterListener(StreamListener):
 
     def __init__(self):
+        """Create elasticsearch instance for live data."""
         self.es = Elasticsearch()
         self.es.indices.create(index='twitter', ignore=400)
 

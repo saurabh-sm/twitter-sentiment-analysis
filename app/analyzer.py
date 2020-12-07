@@ -11,6 +11,7 @@ from app.client import TwitterClient
 class Analyzer:
 
     def __init__(self):
+        """Used to generate summary report and piechart."""
         self.tweets = []
         self.tweetText = []
         self.polarity = 0

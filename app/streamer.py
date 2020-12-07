@@ -7,6 +7,7 @@ from app.authenticator import TwitterAuthenticator
 class Streamer():
 
     def __init__(self):
+        """Authenticate app using dedicated module."""
         self.twitter_authenticator = TwitterAuthenticator()
 
     def stream_tweets(self, hash_tag_list):

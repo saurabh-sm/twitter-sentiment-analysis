@@ -6,6 +6,7 @@ from app.authenticator import TwitterAuthenticator
 class TwitterClient():
 
     def __init__(self, twitter_user=None):
+        """Dev accoutn will be used if no user is provided."""
         self.auth = TwitterAuthenticator().authenticate_twitter_app()
         self.twitter_client = API(self.auth, wait_on_rate_limit=True)    # obey rate limit
         self.twitter_user = twitter_user
@@ -38,22 +39,3 @@ class TwitterClient():
         for tweet in Cursor(self.twitter_client.search, q=search_term, lang = "en").items(num_tweets):
             tweets.append(tweet)
         return tweets
-
-
-'''
-def main():
-
-    twitter_client = TwitterClient()
-    print(type(twitter_client.get_twitter_client_api()))
-    print(twitter_client.get_timeline_tweets(1))
-    print('\n')
-    twitter_client.get_timeline_tweets(1)
-    print('\n')
-    print(twitter_client.get_friend_list(1))
-    print('\n')
-    print(twitter_client.get_tweets('chelsea', 1))
-
-
-if __name__ == '__main__':
-    main()
-'''

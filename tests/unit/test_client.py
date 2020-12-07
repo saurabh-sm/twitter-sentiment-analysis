@@ -1,7 +1,5 @@
 import unittest
 
-import tweepy
-
 from app.client import TwitterClient
 
 class TestTwitterClient(unittest.TestCase):

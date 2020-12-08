@@ -41,30 +41,6 @@
 
   `source .env`
 
-
-----
-
-## Execution
-
-+ To run *test cases*, execute the below command in `$PROJECT_ROOT`:
-
-  `pytest -v`
-
-+ Individual packages like `analyzer.py`, `client.py`, `streamer.py`, etc. can be run directly
-
-+ Run flask microservices:
-
-  `flask run`
-
-+ On the web browser, go to:
-
-  `http://127.0.0.1:5500/`
-
-
-----
-
-## Live Sentiment Analysis
-
 + Download and install [Elasticsearch] and [Kibana]
 
 + Start services for elasticsearch and kibana:
@@ -112,9 +88,26 @@
 
   `http://localhost:5601/app/dev_tools#/console?load_from=https:/www.elastic.co/guide/en/elasticsearch/reference/7.10/snippets/19.console`
 
-+ Execute `streamer.py` from the `$PROJECT_ROOT`:
 
-  `python3 app/streamer.py`
+----
+
+## Execution
+
++ To run *test cases*, execute the below command in `$PROJECT_ROOT`:
+
+  `pytest -v`
+
++ To check *coverage* (source code and test cases), execute the below command in `$PROJECT_ROOT`:
+
+  `pytest --cov -v`
+
++ Run flask microservices:
+
+  `flask run`
+
++ On the web browser, go to:
+
+  `http://127.0.0.1:5500/`
 
 + Setup monitoring:
 
